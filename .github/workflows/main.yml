@@ -12,6 +12,7 @@ jobs:
       image: registry.gitlab.com/containeryard/openssh
       env:
         SSH_HOST: ${{ vars.SSH_HOST }}
+        SSH_KNOWN_HOSTS: NoStrictHostKeyChecking
         SSH_USER_NAME: ${{ vars.SSH_USER_NAME }}
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       volumes:
