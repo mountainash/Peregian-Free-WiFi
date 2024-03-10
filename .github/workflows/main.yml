@@ -12,13 +12,11 @@ jobs:
       image: registry.gitlab.com/containeryard/openssh
       env:
         SSH_HOST: ${{ vars.SSH_HOST }}
-        SSH_KNOWN_HOSTS: NoStrictHostKeyChecking
+        SSH_KNOWN_HOSTS: "NoStrictHostKeyChecking"
         SSH_USER_NAME: ${{ vars.SSH_USER_NAME }}
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       volumes:
           - ./:/app/
     steps:
-      - name: Test
-        run: echo "Test" && echo $SSH_HOST && echo $SSH_USER_NAME && echo $SSH_KNOWN_HOSTS
       - name: Copy HTML to Remote Server
         run: scp splash-page.html $SSH_USER_NAME@$SSH_HOST:/home1/mountash/www/peregian-free-wifi/index.html
