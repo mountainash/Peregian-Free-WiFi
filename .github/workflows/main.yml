@@ -1,0 +1,20 @@
+name: Deploy to Remote Server
+
+on:
+  push:
+
+jobs:
+  deploy:
+    name: Deploy to Remote Server
+    runs-on: ubuntu-latest
+    container:
+      image: registry.gitlab.com/containeryard/openssh
+      env:
+        SSH_HOST: ${{ vars.SSH_HOST }}
+        SSH_USER_NAME: ${{ vars.SSH_USER_NAME }}
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      volumes:
+          - ./:/app/
+    steps:
+      - name: Copy HTML to Remote Server
+        run: scp splash-page.html $SSH_USER_NAME@$SSH_HOST:/home1/mountash/www/peregian-free-wifi/index.html
