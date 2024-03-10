@@ -18,5 +18,9 @@ jobs:
       volumes:
           - ./:/app/
     steps:
+      - name: TEST 1
+        run: cat ~/.ssh/config
       - name: Copy HTML to Remote Server
-        run: scp splash-page.html $SSH_USER_NAME@$SSH_HOST:/home1/mountash/www/peregian-free-wifi/index.html
+        run: echo $SSH_KNOWN_HOSTS && scp splash-page.html $SSH_USER_NAME@$SSH_HOST:/home1/mountash/www/peregian-free-wifi/index.html
+      - name: TEST 2
+        run: cat ~/.ssh/config
